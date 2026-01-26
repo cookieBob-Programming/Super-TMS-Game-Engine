@@ -74,13 +74,12 @@ while status:
 
             elif event.key == pygame.K_DOWN:
                 y = 0
-                
+
             elif event.key == pygame.K_RIGHT:
                 y = 128
 
             elif event.key == pygame.K_UP:
-                y = 256
-
+                y = 192
     pygame.display.flip()
 
 
