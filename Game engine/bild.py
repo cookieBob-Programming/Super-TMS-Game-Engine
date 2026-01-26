@@ -30,20 +30,20 @@ h = 64 #sprite höhe
 dx = 256
 dy = 256
 
+#start location
+strt_x = 0
+strt_y = 0
+
 scrn = pygame.display.set_mode((dx, dy))
 
 
-#background
-scrn.fill([0, 128, 0])
+
 
 
 pygame.display.set_caption('Character animation')
 img = pygame.image.load(sprite).convert_alpha()
 
 
-# sprite position
-sprite_x, sprite_y = 0, 0
-sprite_speed = 5
 
 
 
@@ -54,7 +54,11 @@ status = True
 while status:
     time.sleep(0.2)
     x = (x + 64) % 256
-    scrn.blit(img, (0, 0), (x,y,b,h))
+    # background
+    scrn.fill([0, 128, 0])
+
+
+    scrn.blit(img, (strt_x, strt_y), (x,y,b,h))
 
 
 
@@ -66,13 +70,17 @@ while status:
         #movemnt
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                sprite_x -= sprite_speed
-            elif event.key == pygame.K_RIGHT:
-                sprite_x += sprite_speed
-            elif event.key == pygame.K_UP:
-                sprite_y -= sprite_speed
+                y = 64
+
             elif event.key == pygame.K_DOWN:
-                sprite_y += sprite_speed
+                y = 0
+                
+            elif event.key == pygame.K_RIGHT:
+                y = 128
+
+            elif event.key == pygame.K_UP:
+                y = 256
+
     pygame.display.flip()
 
 
