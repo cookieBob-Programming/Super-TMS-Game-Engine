@@ -11,6 +11,7 @@ root.withdraw()
 
 
 pygame.init()
+clock = pygame.time.Clock()
 #bild pfad
 sprite = filedialog.askopenfilename(
     title="Sprite auswählen",
@@ -30,9 +31,13 @@ h = 64 #sprite höhe
 dx = 256
 dy = 256
 
-#start location
-strt_x = 0
-strt_y = 0
+#spritelocation
+sprite_x = 0
+sprite_y = 0
+
+
+speed = 1 #sprite speed
+
 
 scrn = pygame.display.set_mode((dx, dy))
 
@@ -48,17 +53,14 @@ img = pygame.image.load(sprite).convert_alpha()
 
 
 
-
-
 status = True
 while status:
-    time.sleep(0.2)
-    x = (x + 64) % 256
     # background
     scrn.fill([0, 128, 0])
 
 
-    scrn.blit(img, (strt_x, strt_y), (x,y,b,h))
+
+    scrn.blit(img, (sprite_x, sprite_y), (x,y,b,h))
 
 
 
@@ -66,21 +68,25 @@ while status:
         if event.type == pygame.QUIT:
             status = False
 
+    #movemnt
+    if event.type == pygame.KEYDOWN:
 
-        #movemnt
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                y = 64
+        x = (x + 64) % 256
 
-            elif event.key == pygame.K_DOWN:
-                y = 0
-
-            elif event.key == pygame.K_RIGHT:
-                y = 128
-
-            elif event.key == pygame.K_UP:
-                y = 192
+        if event.key == pygame.K_LEFT:
+            y = 64
+            sprite_x -= speed
+        elif event.key == pygame.K_DOWN:
+            y = 0
+            sprite_y += speed
+        elif event.key == pygame.K_RIGHT:
+            y = 128
+            sprite_x += speed
+        elif event.key == pygame.K_UP:
+            y = 192
+            sprite_y -= speed
     pygame.display.flip()
+    clock.tick(60)
 
 
 pygame.quit()
