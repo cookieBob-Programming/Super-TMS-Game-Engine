@@ -3,8 +3,7 @@ from tkinter import filedialog
 import pygame
 import time
 
-root = tk.Tk()
-root.withdraw()
+
 
 
 
@@ -28,8 +27,8 @@ y = 0
 b = 64 #sprite breite
 h = 64 #sprite höhe
 #display settings
-dx = 256
-dy = 256
+dx = 640
+dy = 640
 
 #spritelocation
 sprite_x = 0
