@@ -49,9 +49,13 @@ npc_x = 64
 npc_y = 64
 
 # hitboxes
-sprite_hitbox = pygame.Rect(sprite_x, sprite_y, 64, 64)
-npc_hitbox = pygame.Rect(npc_x, npc_y, 64, 64)
+print(sprite_x)
+print(sprite_y)
+sprite_hitbox = pygame.Rect(sprite_x+16, sprite_y+48, 32, 16)
+npc_hitbox = pygame.Rect(npc_x+16, npc_y+48, 32, 16)
 
+#debug
+debug = False
 
 
 speed = 1 #sprite speed
@@ -82,15 +86,20 @@ while status:
     scrn.blit(sprite, (sprite_x, sprite_y), (x,y,b,h))
 
     #debug
-    pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
-    pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
+    if debug :
+        pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
+        pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_F9:
+                debug = False
+
 
     # hitbox update
-    sprite_hitbox.x = sprite_x
-    sprite_hitbox.y = sprite_y
+    sprite_hitbox.x = sprite_x+16
+    sprite_hitbox.y = sprite_y+48
 
-    npc_hitbox.x = npc_x
-    npc_hitbox.y = npc_y
+    npc_hitbox.x = npc_x+16
+    npc_hitbox.y = npc_y+48
 
     # collision check
     if sprite_hitbox.colliderect(npc_hitbox):
@@ -117,6 +126,9 @@ while status:
         elif event.key == pygame.K_UP:
             y = 192
             sprite_y -= speed
+        elif event.key == pygame.K_F9:
+            debug = True
+
     pygame.display.flip()
     clock.tick(60)
 
