@@ -93,7 +93,6 @@ while status:
             if event.key == pygame.K_F9:
                 debug = False
 
-
     # hitbox update
     sprite_hitbox.x = sprite_x+16
     sprite_hitbox.y = sprite_y+48
