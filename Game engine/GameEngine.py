@@ -67,8 +67,6 @@ scrn = pygame.display.set_mode((dx, dy))
 
 
 
-
-
 pygame.display.set_caption("Super-TMS-Game Engine")
 sprite = pygame.image.load(sprite).convert_alpha()
 npc = pygame.image.load(npc).convert_alpha()
@@ -94,7 +92,7 @@ while status:
         pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
 
 
-
+        
 
 
 
@@ -131,36 +129,35 @@ while status:
     #movemnt
     if event.type == pygame.KEYDOWN:
 
-        x = (x + 64) % 256
-        pygame.time.wait(ticks_per_frame)
+
 
         if event.key == pygame.K_LEFT:
             y = 64
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
             sprite_x -= speed
         elif event.key == pygame.K_DOWN:
             y = 0
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
             sprite_y += speed
         elif event.key == pygame.K_RIGHT:
             y = 128
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
             sprite_x += speed
         elif event.key == pygame.K_UP:
             y = 192
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
             sprite_y -= speed
         elif event.key == pygame.K_F9:
-            debug = True
+            debug = not debug
+
             print(touch)
             debug_sound = pygame.mixer.Sound(debugsound_musik_path)
             debug_sound.play()
 
-        elif debug and event.key == pygame.K_F9:
-            pygame.time.wait(20)
-            debug = False
-
-
-        elif not debug and event.key == pygame.K_F9:
-            pygame.time.wait(20)
-            debug = True
-            
 
 
     pygame.display.flip()
