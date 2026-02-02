@@ -14,7 +14,7 @@ sprite = filedialog.askopenfilename(
     filetypes=[
         ("Bilddateien", "*.png *.jpg *.jpeg")])
 
-
+#background Musik
 
 background_musik_path = "sounds/title_origin.mp3"
 debugsound_musik_path = "sounds/debug.mp3"
@@ -80,7 +80,7 @@ status = True
 while status:
     # background
     scrn.fill([0, 128, 0])
-    #musik
+
 
 
     scrn.blit(npc, (npc_x, npc_y), (npc_sprite_x, npc_sprite_y, b, h))
@@ -92,7 +92,7 @@ while status:
         pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
 
 
-        
+
 
 
 
@@ -155,6 +155,7 @@ while status:
             debug = not debug
 
             print(touch)
+            #Debug Sound
             debug_sound = pygame.mixer.Sound(debugsound_musik_path)
             debug_sound.play()
 
