@@ -17,7 +17,7 @@ sprite = filedialog.askopenfilename(
 
 
 background_musik_path = "sounds/title_origin.mp3"
-debugsound_musik_path = "sounds/debugsound.mp3"
+debugsound_musik_path = "sounds/debug.mp3"
 
 #npc path
 npc = "Sprites/Costumes/CHIKORITA.png"
