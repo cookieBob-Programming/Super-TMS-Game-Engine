@@ -5,11 +5,11 @@ import pygame
 
 
 
-
-
-
 pygame.init()
+pygame.mixer.init()
 clock = pygame.time.Clock()
+
+
 #bild pfad
 sprite = filedialog.askopenfilename(
     title="Sprite auswählen",
@@ -18,7 +18,7 @@ sprite = filedialog.askopenfilename(
 
 
 
-
+background_musik_path = "ölio"
 
 #npc path
 npc = "Sprites/Costumes/CHIKORITA.png"
@@ -60,7 +60,8 @@ touch = False
 allow_window = False
 
 
-speed = 1 #sprite speed
+speed = 3 #sprite speed
+ticks_per_frame = 40
 
 
 scrn = pygame.display.set_mode((dx, dy))
@@ -130,6 +131,7 @@ while status:
     if event.type == pygame.KEYDOWN:
 
         x = (x + 64) % 256
+        pygame.time.wait(ticks_per_frame)
 
         if event.key == pygame.K_LEFT:
             y = 64
