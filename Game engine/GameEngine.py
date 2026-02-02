@@ -52,7 +52,7 @@ sprite_hitbox = pygame.Rect(sprite_x+16, sprite_y+48, 32, 16)
 npc_hitbox = pygame.Rect(npc_x+16, npc_y+48, 32, 16)
 
 #debug
-debug = False
+debug = True
 
 
 touch = False
@@ -89,14 +89,16 @@ while status:
     scrn.blit(sprite, (sprite_x, sprite_y), (x,y,b,h))
 
     #debug
-    if debug :
+    if debug:
         pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
         pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_F9:
-                debug = False
 
-    # hitbox update
+
+
+
+
+
+                    # hitbox update
     sprite_hitbox.x = sprite_x+16
     sprite_hitbox.y = sprite_y+48
 
@@ -150,6 +152,15 @@ while status:
             debug_sound = pygame.mixer.Sound(debugsound_musik_path)
             debug_sound.play()
 
+        elif debug and event.key == pygame.K_F9:
+            pygame.time.wait(20)
+            debug = False
+
+
+        elif not debug and event.key == pygame.K_F9:
+            pygame.time.wait(20)
+            debug = True
+            
 
 
     pygame.display.flip()
