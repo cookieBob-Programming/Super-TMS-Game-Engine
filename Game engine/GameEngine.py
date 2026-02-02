@@ -17,6 +17,7 @@ sprite = filedialog.askopenfilename(
 
 
 background_musik_path = "sounds/title_origin.mp3"
+debugsound_musik_path = "sounds/debugsound.mp3"
 
 #npc path
 npc = "Sprites/Costumes/CHIKORITA.png"
@@ -72,7 +73,7 @@ pygame.display.set_caption("Super-TMS-Game Engine")
 sprite = pygame.image.load(sprite).convert_alpha()
 npc = pygame.image.load(npc).convert_alpha()
 pygame.mixer.music.load(background_musik_path)
-pygame.mixer.music.play()
+pygame.mixer.music.play(loops=99999)
 
 
 
@@ -147,6 +148,9 @@ while status:
         elif event.key == pygame.K_F9:
             debug = True
             print(touch)
+            pygame.mixer.music.load(debugsound_musik_path)
+            pygame.mixer.music.play()
+
 
 
     pygame.display.flip()
