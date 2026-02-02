@@ -49,8 +49,6 @@ npc_x = 64
 npc_y = 64
 
 # hitboxes
-print(sprite_x)
-print(sprite_y)
 sprite_hitbox = pygame.Rect(sprite_x+16, sprite_y+48, 32, 16)
 npc_hitbox = pygame.Rect(npc_x+16, npc_y+48, 32, 16)
 
