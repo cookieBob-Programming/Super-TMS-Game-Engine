@@ -56,6 +56,10 @@ npc_hitbox = pygame.Rect(npc_x+16, npc_y+48, 32, 16)
 debug = False
 
 
+touch = False
+allow_window = False
+
+
 speed = 1 #sprite speed
 
 
@@ -100,11 +104,27 @@ while status:
 
     # collision check
     if sprite_hitbox.colliderect(npc_hitbox):
-        print("touched")
+        touch = True
+    else:
+        touch = False
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             status = False
+
+    if touch and allow_window:
+        allow_window = False
+        root = tk.Tk()
+        root.title("Info")
+        label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
+        label.pack()
+
+        root.mainloop()
+
+    elif not touch and not allow_window:
+        allow_window = True
+
+
 
     #movemnt
     if event.type == pygame.KEYDOWN:
@@ -125,6 +145,8 @@ while status:
             sprite_y -= speed
         elif event.key == pygame.K_F9:
             debug = True
+            print(touch)
+
 
     pygame.display.flip()
     clock.tick(60)
