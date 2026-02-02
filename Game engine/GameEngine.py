@@ -72,12 +72,9 @@ scrn = pygame.display.set_mode((dx, dy))
 pygame.display.set_caption("Super-TMS-Game Engine")
 sprite = pygame.image.load(sprite).convert_alpha()
 npc = pygame.image.load(npc).convert_alpha()
+
 pygame.mixer.music.load(background_musik_path)
-pygame.mixer.music.play(loops=99999)
-
-
-
-
+pygame.mixer.music.play(loops=-1)
 
 
 
@@ -85,6 +82,8 @@ status = True
 while status:
     # background
     scrn.fill([0, 128, 0])
+    #musik
+
 
     scrn.blit(npc, (npc_x, npc_y), (npc_sprite_x, npc_sprite_y, b, h))
     scrn.blit(sprite, (sprite_x, sprite_y), (x,y,b,h))
@@ -148,8 +147,8 @@ while status:
         elif event.key == pygame.K_F9:
             debug = True
             print(touch)
-            pygame.mixer.music.load(debugsound_musik_path)
-            pygame.mixer.music.play()
+            debug_sound = pygame.mixer.Sound(debugsound_musik_path)
+            debug_sound.play()
 
 
 
