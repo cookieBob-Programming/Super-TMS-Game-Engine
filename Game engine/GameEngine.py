@@ -3,8 +3,6 @@ from tkinter import filedialog
 import pygame
 
 
-
-
 pygame.init()
 pygame.mixer.init()
 clock = pygame.time.Clock()
@@ -18,7 +16,7 @@ sprite = filedialog.askopenfilename(
 
 
 
-background_musik_path = "ölio"
+background_musik_path = "sounds/title_origin.mp3"
 
 #npc path
 npc = "Sprites/Costumes/CHIKORITA.png"
@@ -73,6 +71,8 @@ scrn = pygame.display.set_mode((dx, dy))
 pygame.display.set_caption("Super-TMS-Game Engine")
 sprite = pygame.image.load(sprite).convert_alpha()
 npc = pygame.image.load(npc).convert_alpha()
+pygame.mixer.music.load(background_musik_path)
+pygame.mixer.music.play()
 
 
 
@@ -119,7 +119,6 @@ while status:
         root.title("Info")
         label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
         label.pack()
-
         root.mainloop()
 
     elif not touch and not allow_window:
@@ -152,7 +151,6 @@ while status:
 
     pygame.display.flip()
     clock.tick(60)
-
 
 
 
