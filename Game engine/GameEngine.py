@@ -12,15 +12,18 @@ clock = pygame.time.Clock()
 
 
 #bild pfad
+'''
 sprite = filedialog.askopenfilename(
     title="Sprite auswählen",
     filetypes=[
         ("Bilddateien", "*.png *.jpg *.jpeg")])
+'''
+sprite = "Sprites/Costumes/MORPEKO.png"
 
 #background Musik
 
-background_musik_path = "sounds/title_origin.mp3"
-debugsound_musik_path = "sounds/debug.mp3"
+background_musik_path = "sounds/title_origin.ogg"
+debugsound_musik_path = "sounds/debug.ogg"
 
 #npc path
 npc = "Sprites/Costumes/CHIKORITA.png"
@@ -62,7 +65,7 @@ touch = False
 allow_window = True
 
 
-speed = 6 #sprite speed
+speed = 3 #sprite speed
 ticks_per_frame = 40
 
 
