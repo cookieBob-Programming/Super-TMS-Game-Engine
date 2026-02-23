@@ -11,14 +11,33 @@ pygame.mixer.init()
 clock = pygame.time.Clock()
 
 
-#bild pfad
-'''
-sprite = filedialog.askopenfilename(
-    title="Sprite auswählen",
-    filetypes=[
-        ("Bilddateien", "*.png *.jpg *.jpeg")])
-'''
-sprite = "Sprites/Costumes/MORPEKO.png"
+#display settings
+dx = 640
+dy = 640
+
+scrn = pygame.display.set_mode((dx, dy))
+
+
+
+#funktion for loading sprites
+def load_sprite(path_to_sprite):
+    if path_to_sprite:
+        return pygame.image.load(path_to_sprite).convert_alpha()
+    else:
+        return pygame.image.load("Sprites/Costumes/MORPEKO.png").convert_alpha()
+
+
+def load_music(path_to_music):
+    if path_to_music:
+        pygame.mixer.music.load(path_to_music)
+    else:
+        raise ValueError("No music path provided!")        
+
+def play_music(loop):
+    if loop:
+        pygame.mixer.music.play(loops=loop)
+    else:
+        raise ValueError("Loop value must be provided! (e.g., loops=-1 for infinite loop)")
 
 #background Musik
 
@@ -40,10 +59,6 @@ b = 64 #sprite breite
 h = 64 #sprite höhe
 
 
-
-#display settings
-dx = 640
-dy = 640
 
 #spritelocation
 sprite_x = 0
@@ -69,8 +84,6 @@ speed = 3 #sprite speed
 ticks_per_frame = 40
 
 
-scrn = pygame.display.set_mode((dx, dy))
-
 
 def load_background(path="Sprites/Background/standart_green.png"):
     global warning_was_shown
@@ -80,7 +93,7 @@ def load_background(path="Sprites/Background/standart_green.png"):
     elif path == "Sprites/Background/standart_green.png" and warning_was_shown == False:
         root = tk.Tk()
         root.title("Info")
-        label = tk.Label(root, text="No background image selected, using standart green background!", fg="red", anchor='center')
+        label = tk.Label(root, text="No background image selected, using standart green background!", fg="red",bg="yellow", anchor='center')
         label.pack()
         root.mainloop()
         warning_was_shown = True
@@ -93,12 +106,11 @@ def load_background(path="Sprites/Background/standart_green.png"):
 
 
 pygame.display.set_caption("Super-TMS-Game Engine")
-sprite = pygame.image.load(sprite).convert_alpha()
+sprite = load_sprite("Sprites/Costumes/MORPEKO.png")
 npc = pygame.image.load(npc).convert_alpha()
 
-pygame.mixer.music.load(background_musik_path)
-pygame.mixer.music.play(loops=-1)
-
+load_music(background_musik_path)
+play_music(-1)
 
 
 status = True
