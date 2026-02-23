@@ -3,6 +3,9 @@ from tkinter import filedialog
 import pygame
 
 
+warning_was_shown = False
+
+
 pygame.init()
 pygame.mixer.init()
 clock = pygame.time.Clock()
@@ -56,14 +59,33 @@ debug = True
 
 
 touch = False
-allow_window = False
+allow_window = True
 
 
-speed = 3 #sprite speed
+speed = 6 #sprite speed
 ticks_per_frame = 40
 
 
 scrn = pygame.display.set_mode((dx, dy))
+
+
+def load_background(path="Sprites/Background/standart_green.png"):
+    global warning_was_shown
+    if path != "Sprites/Background/standart_green.png":
+        return pygame.image.load(path).convert_alpha()
+  
+    elif path == "Sprites/Background/standart_green.png" and warning_was_shown == False:
+        root = tk.Tk()
+        root.title("Info")
+        label = tk.Label(root, text="No background image selected, using standart green background!", fg="red", anchor='center')
+        label.pack()
+        root.mainloop()
+        warning_was_shown = True
+        return pygame.image.load(path).convert()
+    
+    else:
+        return pygame.image.load(path).convert()
+        
 
 
 
@@ -79,7 +101,11 @@ pygame.mixer.music.play(loops=-1)
 status = True
 while status:
     # background
-    scrn.fill([0, 128, 0])
+    #scrn.fill([0, 128, 0])
+
+    background = load_background()
+
+    scrn.blit(background, (0, 0))
 
 
 
@@ -90,9 +116,6 @@ while status:
     if debug:
         pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
         pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
-
-
-
 
 
 
