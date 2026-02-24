@@ -46,17 +46,35 @@ def load_sprite(path_to_sprite):
         return pygame.image.load("Sprites/Costumes/MORPEKO.png").convert_alpha()
 
 
-def load_music(path_to_music):
-    if path_to_music:
+class Music:
+    def __init__(self):
+        self.is_loaded = False
+    
+    def load(self, path_to_music):
+        if not path_to_music:
+            raise ValueError("No music path given!")
         pygame.mixer.music.load(path_to_music)
-    else:
-        raise ValueError("No music path provided!")        
-
-def play_music(loop):
-    if loop:
+        self.is_loaded = True
+    
+    def play(self, loop=-1):
+        if not self.is_loaded:
+            raise ValueError("No music loaded! Call load() first.")
         pygame.mixer.music.play(loops=loop)
-    else:
-        raise ValueError("Loop value must be provided! (e.g., loops=-1 for infinite loop)")
+        
+
+class Sound:
+    def __init__(self):
+        self.is_loaded = False
+
+    def load(self, path_to_sound):
+        if not path_to_sound:
+            raise ValueError("No sound path given!")
+        self.Sound = pygame.mixer.Sound(path_to_sound)
+        self.is_loaded = True
+        return self
+
+    def play(self):
+        self.Sound.play()
 
 
 window = Window()
@@ -135,8 +153,10 @@ window.title("Super-TMS-Game Engine")
 sprite = load_sprite("Sprites/Costumes/MORPEKO.png")
 npc = load_sprite(npc)
 
-load_music(background_musik_path)
-play_music(-1)
+music = Music()
+
+music.load(background_musik_path)
+music.play(-1)
 
 
 status = True
@@ -220,7 +240,8 @@ while status:
 
             print(touch)
             #Debug Sound
-            debug_sound = pygame.mixer.Sound(debugsound_musik_path)
+            sound = Sound()
+            debug_sound = sound.load(debugsound_musik_path)
             debug_sound.play()
 
 
