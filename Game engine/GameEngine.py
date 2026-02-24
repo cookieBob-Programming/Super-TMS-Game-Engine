@@ -12,7 +12,7 @@ def init():
     pygame.mixer.init()
     _initialized = True
 
-#init()
+init()
 
 def requires_init(func):
     global _initialized
