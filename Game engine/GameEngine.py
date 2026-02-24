@@ -11,11 +11,30 @@ pygame.mixer.init()
 clock = pygame.time.Clock()
 
 
-#display settings
-dx = 640
-dy = 640
 
-scrn = pygame.display.set_mode((dx, dy))
+#class for creating a window
+class Window:
+    def __init__(self):
+        self.scrn = None
+
+    def size(self, dx, dy):
+        if dx and dy:
+            if dx > 0 and dy > 0:
+                self.scrn = pygame.display.set_mode((dx, dy))
+                return self.scrn
+            else:
+                raise ValueError("Width and height must be greater than 0!")
+        else:
+            raise ValueError("Width and height must be given!")
+    
+    def title(self, title):
+        if title:
+            pygame.display.set_caption(title)
+        else:
+            raise ValueError("Title must be given!")
+
+
+
 
 
 
@@ -38,6 +57,13 @@ def play_music(loop):
         pygame.mixer.music.play(loops=loop)
     else:
         raise ValueError("Loop value must be provided! (e.g., loops=-1 for infinite loop)")
+
+
+window = Window()
+
+
+scrn = window.size(640, 640) #create_window(640, 640, "Super-TMS-Game Engine")
+
 
 #background Musik
 
@@ -105,9 +131,9 @@ def load_background(path="Sprites/Background/standart_green.png"):
 
 
 
-pygame.display.set_caption("Super-TMS-Game Engine")
+window.title("Super-TMS-Game Engine")
 sprite = load_sprite("Sprites/Costumes/MORPEKO.png")
-npc = pygame.image.load(npc).convert_alpha()
+npc = load_sprite(npc)
 
 load_music(background_musik_path)
 play_music(-1)
