@@ -35,9 +35,6 @@ class Window:
 
 
 
-
-
-
 #funktion for loading sprites
 def load_sprite(path_to_sprite):
     if path_to_sprite:
