@@ -4,19 +4,36 @@ import pygame
 
 
 warning_was_shown = False
+_initialized = False
+
+def init():
+    global _initialized
+    pygame.init()
+    pygame.mixer.init()
+    _initialized = True
+
+#init()
+
+def requires_init(func):
+    global _initialized
+    def wrapper(*args, **kwargs):
+        if not _initialized:
+            raise RuntimeError("\033[91mCannot call any other function before init() has been called!"\033[0m)
+        return func(*args, **kwargs)
+    return wrapper
 
 
-pygame.init()
-pygame.mixer.init()
 clock = pygame.time.Clock()
-
 
 
 #class for creating a window
 class Window:
+    
+    @requires_init
     def __init__(self):
         self.scrn = None
 
+    @requires_init
     def size(self, dx, dy):
         if dx and dy:
             if dx > 0 and dy > 0:
@@ -27,6 +44,7 @@ class Window:
         else:
             raise ValueError("Width and height must be given!")
     
+    @requires_init
     def title(self, title):
         if title:
             pygame.display.set_caption(title)
@@ -36,6 +54,7 @@ class Window:
 
 
 #funktion for loading sprites
+@requires_init
 def load_sprite(path_to_sprite):
     if path_to_sprite:
         return pygame.image.load(path_to_sprite).convert_alpha()
@@ -44,15 +63,19 @@ def load_sprite(path_to_sprite):
 
 
 class Music:
+    
+    @requires_init
     def __init__(self):
         self.is_loaded = False
     
+    @requires_init
     def load(self, path_to_music):
         if not path_to_music:
             raise ValueError("No music path given!")
         pygame.mixer.music.load(path_to_music)
         self.is_loaded = True
     
+    @requires_init
     def play(self, loop=-1):
         if not self.is_loaded:
             raise ValueError("No music loaded! Call load() first.")
@@ -60,9 +83,12 @@ class Music:
         
 
 class Sound:
+
+    @requires_init
     def __init__(self):
         self.is_loaded = False
 
+    @requires_init
     def load(self, path_to_sound):
         if not path_to_sound:
             raise ValueError("No sound path given!")
@@ -70,6 +96,7 @@ class Sound:
         self.is_loaded = True
         return self
 
+    @requires_init
     def play(self):
         self.Sound.play()
 
@@ -124,8 +151,8 @@ allow_window = True
 speed = 5 * 1.0 #sprite speed
 ticks_per_frame = 40
 
-
-
+#funktion for loading images as background
+@requires_init
 def load_background(path="Sprites/Background/standart_green.png"):
     global warning_was_shown
     if path != "Sprites/Background/standart_green.png":
@@ -155,96 +182,96 @@ music = Music()
 music.load(background_musik_path)
 music.play(-1)
 
+if __name__ == "__main__":
+    status = True
+    while status:
+        # background
+        #scrn.fill([0, 128, 0])
 
-status = True
-while status:
-    # background
-    #scrn.fill([0, 128, 0])
+        background = load_background()
 
-    background = load_background()
-
-    scrn.blit(background, (0, 0))
-
-
-
-    scrn.blit(npc, (npc_x, npc_y), (npc_sprite_x, npc_sprite_y, b, h))
-    scrn.blit(sprite, (sprite_x, sprite_y), (x,y,b,h))
-
-    #debug
-    if debug:
-        pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
-        pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
+        scrn.blit(background, (0, 0))
 
 
 
-                    # hitbox update
-    sprite_hitbox.x = sprite_x+16
-    sprite_hitbox.y = sprite_y+48
+        scrn.blit(npc, (npc_x, npc_y), (npc_sprite_x, npc_sprite_y, b, h))
+        scrn.blit(sprite, (sprite_x, sprite_y), (x,y,b,h))
 
-    npc_hitbox.x = npc_x+16
-    npc_hitbox.y = npc_y+48
-
-    # collision check
-    if sprite_hitbox.colliderect(npc_hitbox):
-        touch = True
-    else:
-        touch = False
-
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            status = False
-
-    if touch and allow_window:
-        allow_window = False
-        root = tk.Tk()
-        root.title("Info")
-        label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
-        label.pack()
-        root.mainloop()
-
-    elif not touch and not allow_window:
-        allow_window = True
+        #debug
+        if debug:
+            pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
+            pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
 
 
 
-    #movement
-    if event.type == pygame.KEYDOWN:
+                        # hitbox update
+        sprite_hitbox.x = sprite_x+16
+        sprite_hitbox.y = sprite_y+48
+
+        npc_hitbox.x = npc_x+16
+        npc_hitbox.y = npc_y+48
+
+        # collision check
+        if sprite_hitbox.colliderect(npc_hitbox):
+            touch = True
+        else:
+            touch = False
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                status = False
+
+        if touch and allow_window:
+            allow_window = False
+            root = tk.Tk()
+            root.title("Info")
+            label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
+            label.pack()
+            root.mainloop()
+
+        elif not touch and not allow_window:
+            allow_window = True
 
 
 
-        if event.key == pygame.K_LEFT:
-            y = 64
-            x = (x + 64) % 256
-            pygame.time.wait(ticks_per_frame)
-            sprite_x -= speed
-        elif event.key == pygame.K_DOWN:
-            y = 0
-            x = (x + 64) % 256
-            pygame.time.wait(ticks_per_frame)
-            sprite_y += speed
-        elif event.key == pygame.K_RIGHT:
-            y = 128
-            x = (x + 64) % 256
-            pygame.time.wait(ticks_per_frame)
-            sprite_x += speed
-        elif event.key == pygame.K_UP:
-            y = 192
-            x = (x + 64) % 256
-            pygame.time.wait(ticks_per_frame)
-            sprite_y -= speed
-        elif event.key == pygame.K_F9:
-            debug = not debug
-
-            print(touch)
-            #Debug Sound
-            sound = Sound()
-            debug_sound = sound.load(debugsound_musik_path)
-            debug_sound.play()
+        #movement
+        if event.type == pygame.KEYDOWN:
 
 
 
-    pygame.display.flip()
-    clock.tick(60)
+            if event.key == pygame.K_LEFT:
+                y = 64
+                x = (x + 64) % 256
+                pygame.time.wait(ticks_per_frame)
+                sprite_x -= speed
+            elif event.key == pygame.K_DOWN:
+                y = 0
+                x = (x + 64) % 256
+                pygame.time.wait(ticks_per_frame)
+                sprite_y += speed
+            elif event.key == pygame.K_RIGHT:
+                y = 128
+                x = (x + 64) % 256
+                pygame.time.wait(ticks_per_frame)
+                sprite_x += speed
+            elif event.key == pygame.K_UP:
+                y = 192
+                x = (x + 64) % 256
+                pygame.time.wait(ticks_per_frame)
+                sprite_y -= speed
+            elif event.key == pygame.K_F9:
+                debug = not debug
+
+                print(touch)
+                #Debug Sound
+                sound = Sound()
+                debug_sound = sound.load(debugsound_musik_path)
+                debug_sound.play()
+
+
+
+        pygame.display.flip()
+        clock.tick(60)
 
 
 
