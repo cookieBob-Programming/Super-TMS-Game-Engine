@@ -124,7 +124,7 @@ touch = False
 allow_window = True
 
 
-speed = 3 #sprite speed
+speed = 5 * 1.0 #sprite speed
 ticks_per_frame = 40
 
 
@@ -210,7 +210,7 @@ while status:
 
 
 
-    #movemnt
+    #movement
     if event.type == pygame.KEYDOWN:
 
 
