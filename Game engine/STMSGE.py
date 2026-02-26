@@ -119,4 +119,15 @@ def load_background(path="Sprites/Background/standart_green.png"):
         return pygame.image.load(path).convert()
         
 
-#pygame.quit()
+class time:
+
+    class Clock:
+
+        @requires_init
+        def __init__(self):
+            self.clock = pygame.time.Clock()
+
+
+        @requires_init
+        def tick(self, fps):
+            self.clock.tick(fps)

@@ -5,7 +5,7 @@ import tkinter as tk
 
 STMSGE.init()
 
-clock = pygame.time.Clock()
+clock = STMSGE.time.Clock()
 
 window = STMSGE.Window()
 
@@ -142,7 +142,7 @@ while status:
 
                 print(touch)
                 #Debug Sound
-                sound = Sound()
+                sound = STMSGE.Sound()
                 debug_sound = sound.load(debugsound_musik_path)
                 debug_sound.play()
 
