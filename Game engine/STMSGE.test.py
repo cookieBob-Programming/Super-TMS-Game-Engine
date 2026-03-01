@@ -44,7 +44,7 @@ sprite_hitbox = pygame.Rect(sprite_x+16, sprite_y+48, 32, 16)
 npc_hitbox = pygame.Rect(npc_x+16, npc_y+48, 32, 16)
 
 #debug
-debug = True
+debug = not True
 
 
 touch = False
@@ -82,69 +82,81 @@ while status:
         pygame.draw.rect(scrn, (255, 0, 0), sprite_hitbox, 1)
         pygame.draw.rect(scrn, (0, 0, 255), npc_hitbox, 1)
 
-        # hitbox update
-        sprite_hitbox.x = sprite_x+16
-        sprite_hitbox.y = sprite_y+48
+    # hitbox update
+    sprite_hitbox.x = sprite_x+16
+    sprite_hitbox.y = sprite_y+48
 
-        npc_hitbox.x = npc_x+16
-        npc_hitbox.y = npc_y+48
+    npc_hitbox.x = npc_x+16
+    npc_hitbox.y = npc_y+48
 
-        # collision check
-        if sprite_hitbox.colliderect(npc_hitbox):
-            touch = True
-        else:
-            touch = False
+    # collision check
+    if sprite_hitbox.colliderect(npc_hitbox):
+        touch = True
+    else:
+        touch = False
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                status = False
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            status = False
 
-        if touch and allow_window:
-            allow_window = False
-            root = tk.Tk()
-            root.title("Info")
-            label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
-            label.pack()
-            root.mainloop()
+    if touch and allow_window:
+        allow_window = False
+        root = tk.Tk()
+        root.title("Info")
+        label = tk.Label(root, text="Willkommen zu meinem super tollem menü!")
+        label.pack()
+        root.mainloop()
 
-        elif not touch and not allow_window:
-            allow_window = True
-
-
-
-        #movement
-        if event.type == pygame.KEYDOWN:
+    elif not touch and not allow_window:
+        allow_window = True
 
 
 
-            if event.key == pygame.K_LEFT:
-                y = 64
-                x = (x + 64) % 256
-                pygame.time.wait(ticks_per_frame)
-                sprite_x -= speed
-            elif event.key == pygame.K_DOWN:
-                y = 0
-                x = (x + 64) % 256
-                pygame.time.wait(ticks_per_frame)
-                sprite_y += speed
-            elif event.key == pygame.K_RIGHT:
-                y = 128
-                x = (x + 64) % 256
-                pygame.time.wait(ticks_per_frame)
-                sprite_x += speed
-            elif event.key == pygame.K_UP:
-                y = 192
-                x = (x + 64) % 256
-                pygame.time.wait(ticks_per_frame)
-                sprite_y -= speed
-            elif event.key == pygame.K_F9:
-                debug = not debug
+    #movement
+    if event.type == pygame.KEYDOWN:
 
-                print(touch)
-                #Debug Sound
-                sound = STMSGE.Sound()
-                debug_sound = sound.load(debugsound_musik_path)
-                debug_sound.play()
+
+
+        if event.key == pygame.K_LEFT:
+            y = 64
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
+            sprite_x -= speed
+        
+        
+        
+        elif event.key == pygame.K_DOWN:
+            y = 0
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
+            sprite_y += speed
+        
+        
+        
+        elif event.key == pygame.K_RIGHT:
+            y = 128
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
+            sprite_x += speed
+        
+        
+        
+        elif event.key == pygame.K_UP:
+            y = 192
+            x = (x + 64) % 256
+            pygame.time.wait(ticks_per_frame)
+            sprite_y -= speed
+        
+        
+        
+        elif event.key == pygame.K_F1:
+            debug = not debug
+
+            print(touch)
+            #Debug Sound
+            sound = STMSGE.Sound()
+            debug_sound = sound.load(debugsound_musik_path)
+            debug_sound.play()
 
 
 
