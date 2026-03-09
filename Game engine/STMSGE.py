@@ -69,6 +69,19 @@ class Window:
         
         else:
             return pygame.image.load(path).convert()
+        
+    @requires_init
+    def background_color(self, color):
+        if color:
+            if self.scrn:
+                self.scrn.fill(color)
+                return self.scrn
+            
+            else:
+                raise RuntimeError("Window size must be set before setting background color!")
+            
+        else:
+            raise ValueError("Color must be given! (pattern: [R, G, B])")
 
 
 
