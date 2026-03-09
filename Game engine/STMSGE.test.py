@@ -1,6 +1,8 @@
 import STMSGE
 import pygame
 import tkinter as tk
+import time
+import pyttsx3
 
 
 STMSGE.init()
@@ -157,6 +159,7 @@ while status:
             sound = STMSGE.Sound()
             debug_sound = sound.load(debugsound_musik_path)
             debug_sound.play()
+            time.sleep(0.5)
 
 
 
