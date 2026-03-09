@@ -4,7 +4,9 @@ import pygame
 
 
 warning_was_shown = False
+_initialized = Fals_initialized = Fals_initialized = False
 _initialized = False
+
 
 def init():
     global _initialized
