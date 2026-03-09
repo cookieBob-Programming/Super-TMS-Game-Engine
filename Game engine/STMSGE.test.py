@@ -57,6 +57,7 @@ ticks_per_frame = 40
 window.title("Super TMS Game Engine")
 sprite = STMSGE.load_sprite("Sprites/Costumes/MORPEKO.png")
 npc = STMSGE.load_sprite(npc)
+npc2 = STMSGE.load_sprite("Sprites/Costumes/CHIKORITA.png")
 
 music = STMSGE.Music()
 
@@ -71,7 +72,6 @@ while status:
     background = STMSGE.Window.load_background(path="Sprites/Background/Floor.png")
 
     scrn.blit(background, (0, 0))
-
 
 
     scrn.blit(npc, (npc_x, npc_y), (npc_sprite_x, npc_sprite_y, b, h))
