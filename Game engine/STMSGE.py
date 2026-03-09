@@ -48,6 +48,27 @@ class Window:
             pygame.display.set_caption(title)
         else:
             raise ValueError("Title must be given!")
+        
+
+
+    #funktion for loading images as background
+    @requires_init
+    def load_background(path="Sprites/Background/standart_green.png"):
+        global warning_was_shown
+        if path != "Sprites/Background/standart_green.png":
+            return pygame.image.load(path).convert_alpha()
+    
+        elif path == "Sprites/Background/standart_green.png" and warning_was_shown == False:
+            root = tk.Tk()
+            root.title("Info")
+            label = tk.Label(root, text="No background image selected, using standart green background!", fg="red",bg="yellow", anchor='center')
+            label.pack()
+            root.mainloop()
+            warning_was_shown = True
+            return pygame.image.load(path).convert()
+        
+        else:
+            return pygame.image.load(path).convert()
 
 
 
@@ -98,25 +119,6 @@ class Sound:
     def play(self):
         self.Sound.play()
 
-
-#funktion for loading images as background
-@requires_init
-def load_background(path="Sprites/Background/standart_green.png"):
-    global warning_was_shown
-    if path != "Sprites/Background/standart_green.png":
-        return pygame.image.load(path).convert_alpha()
-  
-    elif path == "Sprites/Background/standart_green.png" and warning_was_shown == False:
-        root = tk.Tk()
-        root.title("Info")
-        label = tk.Label(root, text="No background image selected, using standart green background!", fg="red",bg="yellow", anchor='center')
-        label.pack()
-        root.mainloop()
-        warning_was_shown = True
-        return pygame.image.load(path).convert()
-    
-    else:
-        return pygame.image.load(path).convert()
         
 
 class time:
@@ -131,3 +133,8 @@ class time:
         @requires_init
         def tick(self, fps):
             self.clock.tick(fps)
+
+
+
+def quit():
+    pygame.quit()

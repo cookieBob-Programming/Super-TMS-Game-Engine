@@ -68,7 +68,7 @@ while status:
     # background
     #scrn.fill([0, 128, 0])
 
-    background = STMSGE.load_background(path="Sprites/Background/Floor.png")
+    background = STMSGE.Window.load_background(path="Sprites/Background/Floor.png")
 
     scrn.blit(background, (0, 0))
 
@@ -166,4 +166,4 @@ while status:
 
 
 
-pygame.quit()
+STMSGE.quit()
