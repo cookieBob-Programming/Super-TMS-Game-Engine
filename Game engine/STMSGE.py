@@ -148,6 +148,10 @@ class time:
             self.clock.tick(fps)
 
 
+class draw:
+
+    def rect(surface, color, rect):
+        pygame.draw.rect(surface, color, rect)
 
 def quit():
     pygame.quit()
