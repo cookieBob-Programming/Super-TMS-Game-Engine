@@ -68,7 +68,7 @@ while status:
     # background
     #scrn.fill([0, 128, 0])
 
-    background = window.background_color(color=[0, 128, 0]) #STMSGE.Window.load_background(path="Sprites/Background/Floor.png")
+    background = STMSGE.Window.load_background(path="Sprites/Background/Floor.png")
 
     scrn.blit(background, (0, 0))
 
