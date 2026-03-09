@@ -126,7 +126,8 @@ while status:
 
     if touch and allow_window:
         allow_window = False
-        print("Willkommen zu meinem super tollem menü!")
+        dialog_path = os.path.join(script_dir, "npc_dialog.py")
+        subprocess.Popen([sys.executable, dialog_path, "Willkommen zu meinem super tollem Menü!"])
 
     elif not touch and not allow_window:
         allow_window = True
