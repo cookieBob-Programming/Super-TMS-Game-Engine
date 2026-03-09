@@ -58,7 +58,7 @@ class Window:
         if path != "Sprites/Background/standart_green.png":
             return pygame.image.load(path).convert_alpha()
     
-        elif path == "Sprites/Background/standart_green.png" and warning_was_shown == False:
+        elif path == "Sprites/Background/standart_green.png" and not warning_was_shown:
             root = tk.Tk()
             root.title("Info")
             label = tk.Label(root, text="No background image selected, using standart green background!", fg="red",bg="yellow", anchor='center')
