@@ -20,4 +20,4 @@ class Animation(Costume):
         '''
             Tick: next animation step
         '''
-        print("animiere...")
+        pass

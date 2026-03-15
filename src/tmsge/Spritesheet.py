@@ -16,6 +16,7 @@ class Spritesheet:
         self.height = height
         self.columns = columns
         self.rows = rows
+
         self.load()
     
     def load(self):
