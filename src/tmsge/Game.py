@@ -1,4 +1,5 @@
 from .Level import Level
+import pygame
 class Game:
     def __init__(self, width: int, height: int):
         self.window = self.create_window(width, height)
@@ -13,7 +14,9 @@ class Game:
             self.current_level_index = 0
     
     def create_window(self, width: int, height: int):
-        pass
+        if width > 0 and height > 0:
+                self.scrn = pygame.display.set_mode((width, height))
+                return self.scrn
         
     def run(self):
         if self.current_level_index is not None:

@@ -2,7 +2,7 @@ class Spritesheet:
     '''
         Represents and loads a spritesheet-file
     '''
-    def __init__(self, filename: str, width: int, height: int, columns: int, rows: int):
+    def __init__(self, filename: str, width: int, height: int, columns: int, rows: int, pos_x: int, pos_y: int):
         '''
             Parameters:
             filename (str): the full-path location of the spriteshet image file
