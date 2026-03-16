@@ -12,7 +12,10 @@ class Spritesheet:
             rows (int): the amount of rows in the spritesheet
         '''
         self.filename = filename
-        self.width
+        self.width = width
+        self.height = height
+        self.columns = columns
+        self.rows = rows
         self.load()
     
     def load(self):

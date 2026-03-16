@@ -6,3 +6,4 @@ from .Level import Level
 from .Sprite import Sprite
 from .Tile import Tile
 from .Tileset import Tileset
+from .Spritesheet import Spritesheet

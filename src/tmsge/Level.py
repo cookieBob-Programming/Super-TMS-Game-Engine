@@ -2,6 +2,12 @@ from abc import ABC, abstractmethod
 
 class Level:
     
-    @abstractmethod
+    def __init__(self):
+        self.elements = []
+    
+    def add_element(self, e):
+        self.elements.append(e)
+        
     def tick(self):
-        pass
+        for e in self.elements:
+            e.tick()

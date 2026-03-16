@@ -1,2 +1,4 @@
 class Element:
-    pass
+    
+    def tick(self):
+        pass
