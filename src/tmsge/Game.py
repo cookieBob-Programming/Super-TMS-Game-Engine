@@ -7,9 +7,10 @@ class Game:
         self.current_level_index = None
         
     def add_level(self, level: Level):
+        level.game = self
         self.levels.append(level)
         if self.current_level_index is None:
-            self.current_level = 0
+            self.current_level_index = 0
     
     def create_window(self, width: int, height: int):
         pass
