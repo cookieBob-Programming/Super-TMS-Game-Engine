@@ -11,3 +11,6 @@ class Sprite(Element):
     def tick(self):
         for name in self.costumes:
             self.costumes[name].tick()
+
+    def draw(self):
+        pass

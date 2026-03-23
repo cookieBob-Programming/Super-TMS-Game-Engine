@@ -1,3 +1,4 @@
+from .Actor import Actor
 from .Animation import Animation
 from .Costume import Costume
 from .Element import Element
