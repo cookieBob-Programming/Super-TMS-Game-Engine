@@ -1,5 +1,6 @@
 import tmsge
 
+'''
 class Testlevel(tmsge.Level):
     def __init__(self):
         super().__init__()
@@ -16,3 +17,6 @@ mygame.add_level(level1)
 mygame.run()
 print("Ende!")
 #x = [tmsge.Animation(), tmsge.Costume(), tmsge.Element(), tmsge.Game(), tmsge.Level(), tmsge.Sprite(), tmsge.Tile(), tmsge.Tileset()]
+'''
+
+a = tmsge.Sprite()
