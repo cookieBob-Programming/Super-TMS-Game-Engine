@@ -9,6 +9,8 @@ class Testlevel(tmsge.Level):
         sprite1.add_costume("animation", animation)
         self.add_element(sprite1)
         animation.tick()
+        for event in tmsge.Game.get_events():
+            print(event)
 
 mygame = tmsge.Game(800,600)
 level1 = Testlevel()
