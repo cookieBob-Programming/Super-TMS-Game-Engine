@@ -1,6 +1,6 @@
 import tmsge
 
-'''
+
 class Testlevel(tmsge.Level):
     def __init__(self):
         super().__init__()
@@ -13,12 +13,12 @@ class Testlevel(tmsge.Level):
         for event in tmsge.Game.get_events():
             print(event)
 
-mygame = tmsge.Game(800,600)
+mygame = tmsge.Game(800,600, "Test Game")
 level1 = Testlevel()
 mygame.add_level(level1)
 mygame.run()
 print("Ende!")
 #x = [tmsge.Animation(), tmsge.Costume(), tmsge.Element(), tmsge.Game(), tmsge.Level(), tmsge.Sprite(), tmsge.Tile(), tmsge.Tileset()]
-'''
 
-a = tmsge.Sprite()
+
+#a = tmsge.Sprite()

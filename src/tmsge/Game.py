@@ -1,11 +1,12 @@
 from .Level import Level
 import pygame
 class Game:
-    def __init__(self, width: int, height: int):
+    def __init__(self, width: int, height: int, name: str = "Super TMS Game Engine"):
+        self.name = name
         self.window = self.create_window(width, height)
-        
         self.levels = []
         self.current_level_index = None
+       
         
     def add_level(self, level: Level):
         level.game = self
@@ -16,6 +17,7 @@ class Game:
     def create_window(self, width: int, height: int):
         if width > 0 and height > 0:
                 self.scrn = pygame.display.set_mode((width, height))
+                pygame.display.set_caption(self.name)
                 return self.scrn
         
     def run(self):
