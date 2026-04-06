@@ -19,4 +19,3 @@ print("Ende!")
 #x = [tmsge.Animation(), tmsge.Costume(), tmsge.Element(), tmsge.Game(), tmsge.Level(), tmsge.Sprite(), tmsge.Tile(), tmsge.Tileset()]
 '''
 
-a = tmsge.Sprite()
