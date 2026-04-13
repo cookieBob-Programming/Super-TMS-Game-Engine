@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 
 class Level:
-    
+ 
     def __init__(self):
         self.elements = []
-    
+
+                
     def add_element(self, e):
         self.elements.append(e)
         
