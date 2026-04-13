@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from .Actor import Actor
 
 class Costume(Actor):
@@ -5,3 +6,8 @@ class Costume(Actor):
         pass
     def draw(self):
         pass
+=======
+class Costume:
+    def tick(self):
+        pass
+>>>>>>> origin/Jonas

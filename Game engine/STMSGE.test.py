@@ -1,8 +1,11 @@
 import STMSGE
 import pygame
 import tkinter as tk
+<<<<<<< HEAD
 import time
 import pyttsx3
+=======
+>>>>>>> origin/Jonas
 
 
 STMSGE.init()
