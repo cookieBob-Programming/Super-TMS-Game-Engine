@@ -2,11 +2,7 @@ class Spritesheet:
     '''
         Represents and loads a spritesheet-file
     '''
-<<<<<<< HEAD
     def __init__(self, filename: str, width: int, height: int, columns: int, rows: int, pos_x: int, pos_y: int):
-=======
-    def __init__(self, filename: str, width: int, height: int, columns: int, rows: int):
->>>>>>> origin/Jonas
         '''
             Parameters:
             filename (str): the full-path location of the spriteshet image file
