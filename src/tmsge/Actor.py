@@ -1,3 +1,6 @@
+#hat einen sichtbaren effect auf dem spielbildschirm
+
+
 import pygame
 class bob:
     def bob_rede(self,kekse):
@@ -33,5 +36,4 @@ class Actor(bob):
             Gibt ein pygame-Surface dieses Actors zurück
         '''
         pygame.scrn.blit(sprite, (sprite_x, sprite_y), (x, y, b, h))
-
 
