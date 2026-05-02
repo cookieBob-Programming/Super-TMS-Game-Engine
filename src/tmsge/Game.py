@@ -19,3 +19,5 @@ class Game:
         if self.current_level_index is not None:
             while True:
                 self.levels[self.current_level_index].tick()
+
+

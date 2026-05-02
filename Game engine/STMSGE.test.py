@@ -167,3 +167,6 @@ while status:
 
 
 STMSGE.quit()
+
+
+print("quiting")
