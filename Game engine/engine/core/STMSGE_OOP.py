@@ -163,6 +163,7 @@ class Player(GameObject):
         super().__init__(x, y)
         self.sprite = sprite
         self.speed = speed
+        #self.controls = controls
 
         def update(self, dt):
             keys = pygame.key.get_pressed()
@@ -262,10 +263,8 @@ class NPC(GameObject):
             self.update_hitbox()
 
             def update_hitbox(self):
-                self.hitbox_offset_x = (64 - 32) // 2  # = 16 → perfekt zentriert
-                self.hitbox_offset_y = 64 - 16  # = 48 → Füße
-
-                print("HITBOX UPDATE:", self.hitbox.x, self.hitbox.y)
+                self.hitbox_offset_x = (64 - 32) // 2  
+                self.hitbox_offset_y = 64 - 16
 
     def update(self, dt):
         pass  # keine Animation
