@@ -16,7 +16,7 @@ def main():
     "right": pygame.K_d,
     "up": pygame.K_w,
     "down": pygame.K_s}
-
+    engine.set_icon("../Sprites/Bob.png")
 
 #macht object
     player = Player(100, 100, player_sprite, 100)
