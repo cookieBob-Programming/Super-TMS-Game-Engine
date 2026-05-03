@@ -72,6 +72,9 @@ class Engine:
     def add_object(self, obj):
         self.objects.append(obj)
 
+    def remove_object(self, obj):
+        self.objects.remove(obj)
+
     def set_icon(self, path):
         icon_surface = pygame.image.load(path)
         pygame.display.set_icon(icon_surface)
