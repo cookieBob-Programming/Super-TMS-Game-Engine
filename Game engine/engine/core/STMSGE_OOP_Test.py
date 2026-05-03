@@ -12,9 +12,9 @@ def main():
 
 
 #macht object
-    player = Player(100, 100, player_sprite)
+    player = Player(100, 100, player_sprite, 100)
     npc = NPC(400, 300, npc_sprite)
-    npc2 =NPC(500, 400, npc2_sprite)
+    npc2 = NPC(500, 400, npc2_sprite)
 
     engine.add_object(player)
     engine.add_object(npc)

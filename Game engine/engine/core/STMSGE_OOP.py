@@ -159,10 +159,10 @@ class event(GameObject):
 
 
 class Player(GameObject):
-    def __init__(self, x, y, sprite):
+    def __init__(self, x, y, sprite, speed):
         super().__init__(x, y)
         self.sprite = sprite
-        self.speed = 200
+        self.speed = speed
 
         def update(self, dt):
             keys = pygame.key.get_pressed()
