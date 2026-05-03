@@ -159,23 +159,20 @@ class event(GameObject):
 
 
 class Player(GameObject):
-    def __init__(self, x, y, sprite, speed):
+    def __init__(self, x, y, sprite, speed, controls=None):
         super().__init__(x, y)
         self.sprite = sprite
         self.speed = speed
-        #self.controls = controls
 
-        def update(self, dt):
-            keys = pygame.key.get_pressed()
+        # Custom Controls (Standard fallback)
+        self.controls = controls or {
+            "left": pygame.K_LEFT,
+            "right": pygame.K_RIGHT,
+            "up": pygame.K_UP,
+            "down": pygame.K_DOWN
+        }
 
-            if keys[pygame.K_LEFT]:
-                self.x -= self.speed * dt
-            if keys[pygame.K_RIGHT]:
-                self.x += self.speed * dt
 
-            self.update_hitbox()
-
-        # Animation wie in game engine 1
         self.anim = SimpleAnimation(64, 64, 4)
 
     def update(self, dt):
@@ -183,27 +180,27 @@ class Player(GameObject):
 
         moving = False
 
-        if keys[pygame.K_LEFT]:
+        if keys[self.controls["left"]]:
             self.x -= self.speed * dt
             self.anim.set_row(64)
             moving = True
 
-        if keys[pygame.K_RIGHT]:
+        if keys[self.controls["right"]]:
             self.x += self.speed * dt
             self.anim.set_row(128)
             moving = True
 
-        if keys[pygame.K_UP]:
+        if keys[self.controls["up"]]:
             self.y -= self.speed * dt
             self.anim.set_row(192)
             moving = True
 
-        if keys[pygame.K_DOWN]:
+        if keys[self.controls["down"]]:
             self.y += self.speed * dt
             self.anim.set_row(0)
             moving = True
 
-        #  Animation läuft nur wenn Bewegung
+
         if moving:
             self.anim.update(dt)
         else:
@@ -263,11 +260,11 @@ class NPC(GameObject):
             self.update_hitbox()
 
             def update_hitbox(self):
-                self.hitbox_offset_x = (64 - 32) // 2  
+                self.hitbox_offset_x = (64 - 32) // 2
                 self.hitbox_offset_y = 64 - 16
 
     def update(self, dt):
-        pass  # keine Animation
+        pass
 
     def draw(self, screen):
         screen.blit(
