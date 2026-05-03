@@ -16,7 +16,7 @@ class GameObject(ABC):
         self.debug_sound = pygame.mixer.Sound("../sounds/debug.ogg")
 
 
-        # Offset wie früher (Füße)
+        # Offset wie in engine 1
         self.hitbox_offset_x = 16
         self.hitbox_offset_y = 48
         self.hitbox = pygame.Rect(
@@ -26,7 +26,7 @@ class GameObject(ABC):
             16
         )
 
-        self.hitbox = pygame.Rect(0, 0, 32, 16)
+        #self.hitbox = pygame.Rect(0, 0, 32, 16)
         self.update_hitbox()
 
     def update_hitbox(self):
@@ -42,10 +42,14 @@ class GameObject(ABC):
     @abstractmethod
     def draw(self, screen):
         pass
+'''
 
     def update_hitbox(self):
         self.hitbox.x = self.x
         self.hitbox.y = self.y
+
+'''
+
 
 
 
@@ -136,6 +140,21 @@ class Sound:
 
     def play(self):
         self.sound.play()
+
+'''
+Ein Event soll alles sein können
+
+zb. ein trigger der ein Sprite verschwinden lässt(zb. bei berührung)
+
+oder ein Baum den mann mit einer taste put machen kann.
+'''
+
+
+
+class event(GameObject):
+    def __init__(self, x, y, sprite):
+        pass
+
 
 
 
