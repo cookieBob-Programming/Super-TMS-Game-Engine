@@ -72,6 +72,10 @@ class Engine:
     def add_object(self, obj):
         self.objects.append(obj)
 
+    def set_icon(self, path):
+        icon_surface = pygame.image.load(path)
+        pygame.display.set_icon(icon_surface)
+
     def run(self):
         while self.running:
             dt = self.clock.tick(60) / 1000.0
