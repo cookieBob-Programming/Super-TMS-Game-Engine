@@ -1,39 +1,47 @@
-#hat einen sichtbaren effect auf dem spielbildschirm
-
-
+from abc import ABC, abstractmethod
 import pygame
-class bob:
-    def bob_rede(self,kekse):
-        self.kekse = kekse
-        print("ich bin bob")
-pygame.init()
-class Actor(bob):
+import functools
+
+class Actor(ABC):
     '''
         Ein Actor verändert das Aussehen des Spiels = aktives Geschehen
     '''
     
+    def __init__(self):
+        self._changed = True
 
+    @property
+    def changed(self):
+        return self._changed
+
+    @changed.setter
+    def changed(self, value: bool):
+        self._changed = value
+
+    @staticmethod
+    def only_if_changed(draw_func):
+        @functools.wraps(draw_func)
+        def wrapper(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
+            print(self.__class__.__name__ + ".changed = " + str(self.changed))
+            result = draw_func(self, surface, dest, area)
+            if self.changed:
+                self.changed = False
+                return result
+            else:
+                return []
+        return wrapper
+
+    @abstractmethod
     def tick(self):
         '''
             Etwas passiert
         '''
         pass
 
-    def init(self,actor_x,actor_y,x,y,b,h,sprite):
-        self.actor_x = actor_x
-        self.actor_y = actor_y
-        self.x = x
-        self.y = y
-        self.b = b
-        self.h = h
-        self.sprite = sprite#optional fals actor ein sprite hat
-
-
-    def draw(self,sprite_x,sprite_y,x,y,b,h,sprite):
-
-
+    @abstractmethod
+    def draw(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
         '''
             Gibt ein pygame-Surface dieses Actors zurück
         '''
-        pygame.scrn.blit(sprite, (sprite_x, sprite_y), (x, y, b, h))
+        pass
 
