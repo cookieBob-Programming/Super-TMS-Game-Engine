@@ -32,7 +32,6 @@ class GameObject(ABC):
     def update_hitbox(self):
         self.hitbox.x = int(self.x + self.hitbox_offset_x )
         self.hitbox.y = int(self.y + self.hitbox_offset_y )
-        print("HITBOX UPDATE:", self.hitbox_offset_x, self.hitbox_offset_y)
 
 
     @abstractmethod
@@ -90,6 +89,7 @@ class Engine:
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_F9:
+
                         self.debug = not self.debug
                         self.debug_sound.play()
 
@@ -103,7 +103,8 @@ class Engine:
                     obj2 = self.objects[j]
 
                     if obj1.hitbox.colliderect(obj2.hitbox):
-                        print("TOUCH!")
+                        #print("TOUCH!")
+                        pass
 
             # DRAW
             self.screen.fill((30, 30, 30))
@@ -124,6 +125,16 @@ class Sprite:
     def __init__(self, path: str):
         self.image = pygame.image.load(path).convert_alpha()
 
+
+
+class Event():
+    def get_touch(self,obj1,obj2):
+        for i in range(len(self.objects)):
+            for j in range(i + 1, len(self.objects)):
+                obj1 = self.objects[i]
+                obj2 = self.objects[j]
+            if obj1.hitbox.colliderect(obj2.hitbox):
+                print("TestKekse")
 
 
 class Music:
@@ -148,19 +159,7 @@ class Sound:
     def play(self):
         self.sound.play()
 
-'''
-Ein Event soll alles sein können
 
-zb. ein trigger der ein Sprite verschwinden lässt(zb. bei berührung)
-
-oder ein Baum den mann mit einer taste put machen kann.
-'''
-
-
-
-class event(GameObject):
-    def __init__(self, x, y, sprite):
-        pass
 
 
 
