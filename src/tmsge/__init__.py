@@ -7,6 +7,8 @@ from .Shape import Shape
 from .Actor import Actor
 from .Rectangle import Rectangle
 from .Sprite import Sprite
+from .EventType import EventType
+from .KeyType import KeyType
 #from .Tile import Tile
 #from .Tileset import Tileset
-#from .Spritesheet import Spritesheet
+from .Spritesheet import Spritesheet

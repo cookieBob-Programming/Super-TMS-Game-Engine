@@ -12,7 +12,8 @@ class Image(Costume):
 
     def tick(self):
         pass
-
+        
     @Actor.only_if_changed
     def draw(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
-        return [surface.blit(self.image, dest, area)]
+        result_rect = surface.blit(self.image, dest, area)
+        return [result_rect]

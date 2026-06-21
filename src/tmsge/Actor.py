@@ -1,14 +1,17 @@
 from abc import ABC, abstractmethod
 import pygame
 import functools
+from .EventTrigger import EventTrigger
 
-class Actor(ABC):
+class Actor(ABC, EventTrigger):
     '''
         Ein Actor verändert das Aussehen des Spiels = aktives Geschehen
     '''
     
     def __init__(self):
+        super().__init__()
         self._changed = True
+        self.rect = None
 
     @property
     def changed(self):
@@ -22,7 +25,6 @@ class Actor(ABC):
     def only_if_changed(draw_func):
         @functools.wraps(draw_func)
         def wrapper(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
-            print(self.__class__.__name__ + ".changed = " + str(self.changed))
             result = draw_func(self, surface, dest, area)
             if self.changed:
                 self.changed = False

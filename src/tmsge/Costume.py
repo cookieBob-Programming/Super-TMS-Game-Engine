@@ -9,7 +9,7 @@ class Costume(Actor, ABC):
         
         self.width = width
         self.height = height
-
+        
     @abstractmethod
     def tick(self):
         pass

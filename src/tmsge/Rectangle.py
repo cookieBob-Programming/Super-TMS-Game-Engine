@@ -9,7 +9,7 @@ class Rectangle(Shape):
 
     def tick(self):
         pass
-    
+            
     @Actor.only_if_changed
     def draw(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
         

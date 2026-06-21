@@ -1,26 +1,31 @@
-class Spritesheet:
-    '''
-        Represents and loads a spritesheet-file
-    '''
-    def __init__(self, filename: str, width: int, height: int, columns: int, rows: int):
-        '''
-            Parameters:
-            filename (str): the full-path location of the spriteshet image file
-            width (int): the width of a single sprite
-            height (int): the height of a single sprite
-            columns (int): the amount of columns in the spritesheet
-            rows (int): the amount of rows in the spritesheet
-        '''
-        self.filename = filename
+import pygame
+
+from .Image import Image
+from .Actor import Actor
+class Spritesheet(Image):
+    def __init__(self, image, width, height, columns, rows, speed):
+        super().__init__(image)
         self.width = width
         self.height = height
-        self.columns = columns
+        
         self.rows = rows
-
-        self.load()
+        self.columns = columns
+        
+        self.row = 0
+        self.column = 0
     
-    def load(self):
-        '''
-            Loads the spritesheet
-        '''
-        pass
+        self.speed = speed
+        self.tick_counter = 0
+        
+        self.running = False
+        
+    def tick(self):
+        if self.running:
+            self.tick_counter += 1
+            if self.tick_counter == self.speed:
+                self.column = (self.column + 1) % self.columns
+                self.tick_counter = 0
+        
+    @Actor.only_if_changed
+    def draw(self, surface: pygame.Surface, dest: tuple[int, int], area: pygame.Rect = None) -> list[pygame.Rect]:
+        super().draw(surface, dest, (self.column * self.width, self.row * self.height, self.width, self.height))
