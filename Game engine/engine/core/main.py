@@ -2,7 +2,6 @@ from STMSGE_OOP import *
 import pygame
 import time
 import random
-from plyer import notification
 class Game:
     def __init__(self):
         self.wind_mult = 1
@@ -25,17 +24,17 @@ class Game:
         free_spots = [274, 420, 174, 420, 74, 420, 474, 420, 574, 420 ]
         self.current_power = 0
         self.engine = Engine(800, 600, "Crank It!")
-        self.engine.set_background("../Sprites/bg_01.png")
-        crank_sprite = Sprite("../Sprites/crank_64x.png")
-        windrad_sprite = Sprite("../Sprites/windrad.png")
-        solar_sprite = Sprite("../Sprites/solar.png")
-        biogas_sprite = Sprite("../Sprites/biogas.png")
-        notstrom_sprite = Sprite("../Sprites/notstrom.png")
+        self.engine.set_background(resource_path("Sprites/bg_01.png"))
+        crank_sprite = Sprite(resource_path("Sprites/crank_64x.png"))
+        windrad_sprite = Sprite(resource_path("Sprites/windrad.png"))
+        solar_sprite = Sprite(resource_path("Sprites/solar.png"))
+        biogas_sprite = Sprite(resource_path("Sprites/biogas.png"))
+        notstrom_sprite = Sprite(resource_path("Sprites/notstrom.png"))
         #ventilator_sprite = ventilator_sprite("./Sprites/ventilator.png")
-        akw_sprite = Sprite("../Sprites/akw.png")
-        geotherm_sprite = Sprite("../Sprites/geotherm.png")
-        flower_turbine_sprite = Sprite("../Sprites/flower.png")
-        infinte_cat_sprite = Sprite("../Sprites/infinite_power_cat.png")
+        akw_sprite = Sprite(resource_path("Sprites/akw.png"))
+        geotherm_sprite = Sprite(resource_path("Sprites/geotherm.png"))
+        flower_turbine_sprite = Sprite(resource_path("Sprites/flower.png"))
+        infinte_cat_sprite = Sprite(resource_path("Sprites/infinite_power_cat.png"))
         #self.ventilator = NPC(274, 420, ventilator_sprite, anim_button="always", on_cycle_complete=lambda: self.add_power(random.randint(0.02, 0.08)))
         self.crank = NPC(374, 420, crank_sprite, anim_button="ML", on_cycle_complete=lambda: self.add_power(1))
         self.windrad_01 = NPC(174, 320, windrad_sprite, anim_button="always", on_cycle_complete=lambda: self.add_power(40*self.wind_mult))

@@ -1,5 +1,16 @@
 import pygame
+import sys
+import os
 from abc import ABC, abstractmethod
+
+
+def resource_path(relative_path):
+    try:
+        base = sys._MEIPASS
+    except AttributeError:
+        base = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(base, "..", relative_path)
+    return os.path.join(base, relative_path)
 
 
 # -----------------------------
@@ -59,7 +70,7 @@ class Engine:
         self.objects = []
 
         self.debug = False
-        self.debug_sound = pygame.mixer.Sound("../sounds/debug.ogg")
+        self.debug_sound = pygame.mixer.Sound(resource_path("sounds/debug.ogg"))
 
         self.bg_bottom = None
         self.bg_top = None
