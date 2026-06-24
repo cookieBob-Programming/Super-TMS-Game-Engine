@@ -24,18 +24,18 @@ class Game:
         self.i_bought = False
         free_spots = [274, 420, 174, 420, 74, 420, 474, 420, 574, 420 ]
         self.current_power = 0
-        self.engine = Engine(800, 600, "Make the power!")
-        self.engine.set_background("./Sprites/bg_01.png")
-        crank_sprite = Sprite("./Sprites/crank_64x.png")
-        windrad_sprite = Sprite("./Sprites/windrad.png")
-        solar_sprite = Sprite("./Sprites/solar.png")
-        biogas_sprite = Sprite("./Sprites/biogas.png")
-        notstrom_sprite = Sprite("./Sprites/notstrom.png")
-        #ventilator_sprite = Sprite("./Sprites/ventilator.png")
-        akw_sprite = Sprite("./Sprites/akw.png")
-        geotherm_sprite = Sprite("./Sprites/geotherm.png")
-        flower_turbine_sprite = Sprite("./Sprites/flower.png")
-        infinte_cat_sprite = Sprite("./Sprites/infinite_power_cat.png")
+        self.engine = Engine(800, 600, "Crank It!")
+        self.engine.set_background("../Sprites/bg_01.png")
+        crank_sprite = Sprite("../Sprites/crank_64x.png")
+        windrad_sprite = Sprite("../Sprites/windrad.png")
+        solar_sprite = Sprite("../Sprites/solar.png")
+        biogas_sprite = Sprite("../Sprites/biogas.png")
+        notstrom_sprite = Sprite("../Sprites/notstrom.png")
+        #ventilator_sprite = ventilator_sprite("./Sprites/ventilator.png")
+        akw_sprite = Sprite("../Sprites/akw.png")
+        geotherm_sprite = Sprite("../Sprites/geotherm.png")
+        flower_turbine_sprite = Sprite("../Sprites/flower.png")
+        infinte_cat_sprite = Sprite("../Sprites/infinite_power_cat.png")
         #self.ventilator = NPC(274, 420, ventilator_sprite, anim_button="always", on_cycle_complete=lambda: self.add_power(random.randint(0.02, 0.08)))
         self.crank = NPC(374, 420, crank_sprite, anim_button="ML", on_cycle_complete=lambda: self.add_power(1))
         self.windrad_01 = NPC(174, 320, windrad_sprite, anim_button="always", on_cycle_complete=lambda: self.add_power(40*self.wind_mult))
@@ -59,6 +59,7 @@ class Game:
         # self.engine.add_object(self.infinte_cat)
         pygame.font.init()
         self.font = pygame.font.SysFont("Arial", 12)
+        self.font2 = pygame.font.SysFont("Arial", 20)
 
     def add_power(self, to_add=1):
         self.current_power += to_add
@@ -66,178 +67,7 @@ class Game:
     def run(self):
 
         while self.engine.running:
-            
-            #lvl1 notify
-            if self.current_power == 20 or self.current_power > 20:
-                if self.notified_lvl1 == False:
-                    notification.notify(
-                        title="Reached Level 1!",
-                        message="Unlocked Flower Turbine! (15kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl1 = True
-            #lvl2 notify
-            if self.current_power == 50 or self.current_power > 50:
-                if self.notified_lvl2 == False:
-                    notification.notify(
-                        title="Reached Level 2!",
-                        message="Unlocked Solar Panel! (100kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl2 = True
 
-            #lvl3 notify
-            if self.current_power == 150 or self.current_power > 150:
-                if self.notified_lvl3 == False:
-                    notification.notify(
-                        title="Reached Level 3!",
-                        message="Unlocked Emergency Power! (300kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl3 = True
-            #lvl4 notify
-            if self.current_power == 500 or self.current_power > 500:
-                if self.notified_lvl4 == False:
-                    notification.notify(
-                        title="Reached Level 4!",
-                        message="Unlocked Biogas Plant! (600kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl4 = True
-
-            #lvl5 notify
-            if self.current_power == 3000 or self.current_power > 3000:
-                if self.notified_lvl5 == False:
-                    notification.notify(
-                        title="Reached Level 5!",
-                        message="Unlocked Windwheel! (4000kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl5 = True
-
-
-
-            #lvl6 notify
-            if self.current_power == 8000 or self.current_power > 8000:
-                if self.notified_lvl6 == False:
-                    notification.notify(
-                        title="Reached Level 6!",
-                        message="Unlocked Geothermal Power Plant! (10000kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl6 = True
-
-
-
-            #lvl7 notify
-            if self.current_power == 50000 or self.current_power > 50000:
-                if self.notified_lvl7 == False:
-                    notification.notify(
-                        title="Reached Level 7!",
-                        message="Unlocked Nuclear Power Plant! (80000kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl7 = True
-
-
-
-            #lvl8 notify
-            if self.current_power == 8000000000 or self.current_power > 800000000:
-                if self.notified_lvl8 == False:
-                    notification.notify(
-                        title="Reached Level 8!",
-                        message="Unlocked INFINITE POWER USING CAT WITH SANDWICH ON TOP! (10000000000kW)",
-                        app_icon="./Sprites/notify.ico",
-                        timeout=3
-                    )
-                    self.notified_lvl8 = True
-
-
-
-
-                
-            
-            #checking if level 1 was Reached
-            if self.notified_lvl1 == True and self.v_bought == False:
-                if self.btn_buy.pressed():
-                    self.v_bought = True
-                    self.engine.add_object(self.flower_turbine)
-                    self.current_power -= 15
-            
-            # checking if level 2 was Reached
-            elif self.notified_lvl2 == True and self.v_bought == True and self.s_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 100:
-                        self.engine.add_object(self.solar)
-                        self.s_bought = True
-                        self.current_power -= 100 
-
-
-            # checking if level 3 was Reached
-            elif self.notified_lvl3 == True and self.s_bought == True and self.n_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 300:
-                        self.engine.add_object(self.notstrom)
-                        self.n_bought = True
-                        self.current_power -= 300
-
-             # checking if level 4 was Reached
-            elif self.notified_lvl4 == True and self.s_bought == True and self.b_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 600:
-                        self.engine.add_object(self.biogas)
-                        self.b_bought = True
-                        self.current_power -= 600
-
-            # checking if level 5 was Reached
-            elif self.notified_lvl5 == True and self.b_bought == True and self.w_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 4000:
-                        self.engine.add_object(self.windrad_01)
-                        self.w_bought = True
-                        self.current_power -= 4000
-
-
-            # checking if level 6 was Reached
-            elif self.notified_lvl6 == True and self.w_bought == True and self.g_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 10000:
-                        self.engine.add_object(self.geotherm)
-                        self.g_bought = True
-                        self.current_power -= 10000
-
-
-            # checking if level 7 was Reached
-            elif self.notified_lvl7 == True and self.g_bought == True and self.a_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 80000:
-                        self.engine.add_object(self.akw)
-                        self.g_bought = True
-                        self.current_power -= 80000
-
-
-
-
-            # checking if level 8 was Reached
-            elif self.notified_lvl8 == True and self.a_bought == True and self.i_bought == False:
-                if self.btn_buy.pressed():
-                    if self.current_power > 10000000000:
-                        self.engine.add_object(self.infinte_cat)
-                        self.g_bought = True
-                        self.current_power -= 10000000000
-
-
-
-
-
-            
             dt = self.engine.clock.tick(60) / 1000
 
             # -----------------------------
@@ -257,6 +87,68 @@ class Game:
                 obj.update_hitbox()
 
             # -----------------------------
+            # LEVEL CHECKS
+            # -----------------------------
+            if self.current_power >= 20:
+                self.notified_lvl1 = True
+            if self.current_power >= 50:
+                self.notified_lvl2 = True
+            if self.current_power >= 150:
+                self.notified_lvl3 = True
+            if self.current_power >= 500:
+                self.notified_lvl4 = True
+            if self.current_power >= 3000:
+                self.notified_lvl5 = True
+            if self.current_power >= 8000:
+                self.notified_lvl6 = True
+            if self.current_power >= 50000:
+                self.notified_lvl7 = True
+            if self.current_power >= 800000000:
+                self.notified_lvl8 = True
+
+            # BUY LOGIC
+            if self.notified_lvl1 and not self.v_bought:
+                if self.btn_buy.pressed():
+                    self.v_bought = True
+                    self.engine.add_object(self.flower_turbine)
+                    self.current_power -= 15
+            elif self.notified_lvl2 and self.v_bought and not self.s_bought:
+                if self.btn_buy.pressed() and self.current_power >= 100:
+                    self.engine.add_object(self.solar)
+                    self.s_bought = True
+                    self.current_power -= 100
+            elif self.notified_lvl3 and self.s_bought and not self.n_bought:
+                if self.btn_buy.pressed() and self.current_power >= 300:
+                    self.engine.add_object(self.notstrom)
+                    self.n_bought = True
+                    self.current_power -= 300
+            elif self.notified_lvl4 and self.s_bought and not self.b_bought:
+                if self.btn_buy.pressed() and self.current_power >= 600:
+                    self.engine.add_object(self.biogas)
+                    self.b_bought = True
+                    self.current_power -= 600
+            elif self.notified_lvl5 and self.b_bought and not self.w_bought:
+                if self.btn_buy.pressed() and self.current_power >= 4000:
+                    self.engine.add_object(self.windrad_01)
+                    self.w_bought = True
+                    self.current_power -= 4000
+            elif self.notified_lvl6 and self.w_bought and not self.g_bought:
+                if self.btn_buy.pressed() and self.current_power >= 10000:
+                    self.engine.add_object(self.geotherm)
+                    self.g_bought = True
+                    self.current_power -= 10000
+            elif self.notified_lvl7 and self.g_bought and not self.a_bought:
+                if self.btn_buy.pressed() and self.current_power >= 80000:
+                    self.engine.add_object(self.akw)
+                    self.a_bought = True
+                    self.current_power -= 80000
+            elif self.notified_lvl8 and self.a_bought and not self.i_bought:
+                if self.btn_buy.pressed() and self.current_power >= 10000000000:
+                    self.engine.add_object(self.infinte_cat)
+                    self.i_bought = True
+                    self.current_power -= 10000000000
+
+            # -----------------------------
             # DRAW
             # -----------------------------
             if self.engine.bg_bottom:
@@ -269,6 +161,40 @@ class Game:
 
             if self.engine.bg_top:
                 self.engine.screen.blit(self.engine.bg_top, (0, 0))
+
+            # NOTIFICATIONS
+            if self.notified_lvl1:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 1! Unlocked Flower Turbine! (15kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl2:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 2! Unlocked Solar Panel! (100kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl3:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 3! Unlocked Emergency Power! (300kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl4:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 4! Unlocked Biogas Plant! (600kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl5:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 5! Unlocked Windwheel! (4000kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl6:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 6! Unlocked Geothermal Power Plant! (10000kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl7:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 7! Unlocked Nuclear Power Plant! (80000kW)", True, (0,0,0)),
+                    (200, 50))
+            if self.notified_lvl8:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 8! Unlocked INFINITE POWER CAT!", True, (0,0,0)),
+                    (200, 50))
 
             self.engine.screen.blit(
                 self.font.render(f"Current Power (kW): {self.current_power}", True, (0,0,0)),
