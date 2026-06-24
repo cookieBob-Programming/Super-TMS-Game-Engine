@@ -59,7 +59,7 @@ class Game:
         pygame.font.init()
         self.font = pygame.font.SysFont("Arial", 12)
         self.font2 = pygame.font.SysFont("Arial", 20)
-
+        self.current_power = 9999999999
     def add_power(self, to_add=1):
         self.current_power += to_add
 
@@ -161,38 +161,38 @@ class Game:
             if self.engine.bg_top:
                 self.engine.screen.blit(self.engine.bg_top, (0, 0))
 
-            # NOTIFICATIONS
-            if self.notified_lvl1:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 1! Unlocked Flower Turbine! (15kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl2:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 2! Unlocked Solar Panel! (100kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl3:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 3! Unlocked Emergency Power! (300kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl4:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 4! Unlocked Biogas Plant! (600kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl5:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 5! Unlocked Windwheel! (4000kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl6:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 6! Unlocked Geothermal Power Plant! (10000kW)", True, (0,0,0)),
-                    (200, 50))
-            if self.notified_lvl7:
-                self.engine.screen.blit(
-                    self.font2.render("Reached Level 7! Unlocked Nuclear Power Plant! (80000kW)", True, (0,0,0)),
-                    (200, 50))
+            # NOTIFICATIONS (nur die höchste anzeigen)
             if self.notified_lvl8:
                 self.engine.screen.blit(
                     self.font2.render("Reached Level 8! Unlocked INFINITE POWER CAT!", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl7:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 7! Unlocked Nuclear Power Plant! (80000kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl6:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 6! Unlocked Geothermal Power Plant! (10000kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl5:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 5! Unlocked Windwheel! (4000kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl4:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 4! Unlocked Biogas Plant! (600kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl3:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 3! Unlocked Emergency Power! (300kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl2:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 2! Unlocked Solar Panel! (100kW)", True, (0,0,0)),
+                    (200, 50))
+            elif self.notified_lvl1:
+                self.engine.screen.blit(
+                    self.font2.render("Reached Level 1! Unlocked Flower Turbine! (15kW)", True, (0,0,0)),
                     (200, 50))
 
             self.engine.screen.blit(
