@@ -209,7 +209,7 @@ class Game:
                     (200, 60))
             elif self.notified_lvl5:
                 self.engine.screen.blit(
-                    self.font2.render("Reached Level 5! Unlocked Windwheel! (4000kW)", True, (0,0,0)),
+                    self.font2.render("Reached Level 5! Unlocked Wind Turbine! (4000kW)", True, (0,0,0)),
                     (200, 60))
             elif self.notified_lvl4:
                 self.engine.screen.blit(

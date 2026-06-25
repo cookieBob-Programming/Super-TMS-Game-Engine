@@ -11,6 +11,7 @@ echo "Build .exe"
 #----------------#
 .venv/bin/pyinstaller "Crank It!.spec"
 echo "Build AppImage"
+mv "dist/Crank_It!" dist/Crank_It!.AppImage
 
 #------------------------#
 # Remove Build directory #
